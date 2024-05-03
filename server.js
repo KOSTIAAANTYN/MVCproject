@@ -14,6 +14,8 @@ const movieController = require('./controllers/movieController')(movies);
 
 app.get('/', movieController.getMovies);
 app.post('/add', movieController.addMovie);
+app.post('/watched/:id', movieController.markAsWatched); 
+app.post('/review/:id', movieController.addReview); 
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

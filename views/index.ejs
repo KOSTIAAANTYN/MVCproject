@@ -20,8 +20,27 @@
   
   <h2>Movie Collection:</h2>
   <ul>
-    <% movies.forEach(function(movie) { %>
-      <li><%= movie.title %> - <%= movie.director %> (Rating: <%= movie.rating %>)</li>
+    <% movies.forEach(function(movie, index) { %>
+      <li>
+        <%= movie.title %> - <%= movie.director %> (Rating: <%= movie.rating %>)
+        <% if (movie.watched) { %>
+          <span style="color: green;">(Watched)</span>
+        <% } else { %>
+          <form action="/watched/<%= index %>" method="POST" style="display: inline;">
+            <button type="submit">Mark as Watched</button>
+          </form>
+        <% } %>
+        <br>
+        <% if (movie.review) { %>
+          <p><strong>Review:</strong> <%= movie.review %></p>
+        <% } else { %>
+          <form action="/review/<%= index %>" method="POST">
+            <label for="review">Review:</label><br>
+            <textarea id="review" name="review" rows="4" cols="50"></textarea><br>
+            <button type="submit">Add Review</button>
+          </form>
+        <% } %>
+      </li>
     <% }); %>
   </ul>
 </body>
