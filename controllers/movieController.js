@@ -19,6 +19,15 @@ module.exports = function(movies) {
       const review = req.body.review;
       movies[movieIndex].review = review;
       res.redirect('/');
+    },
+    deleteMovie: function(req, res) {
+      const index = req.params.index;
+      if (index >= 0 && index < movies.length) {
+        movies.splice(index, 1);
+      }
+      res.redirect('/');
     }
   };
 };
+
+

@@ -16,6 +16,7 @@ app.get('/', movieController.getMovies);
 app.post('/add', movieController.addMovie);
 app.post('/watched/:id', movieController.markAsWatched); 
 app.post('/review/:id', movieController.addReview); 
+app.post('/delete/:index', movieController.deleteMovie);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

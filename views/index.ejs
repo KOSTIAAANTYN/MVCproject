@@ -23,6 +23,9 @@
     <% movies.forEach(function(movie, index) { %>
       <li>
         <%= movie.title %> - <%= movie.director %> (Rating: <%= movie.rating %>)
+        <form action="/delete/<%= index %>" method="POST" style="display: inline;">
+          <button type="submit">Delete</button>
+        </form>
         <% if (movie.watched) { %>
           <span style="color: green;">(Watched)</span>
         <% } else { %>
@@ -45,3 +48,4 @@
   </ul>
 </body>
 </html>
+
