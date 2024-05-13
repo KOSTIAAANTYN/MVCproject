@@ -18,7 +18,7 @@ Projekt "Kino-Kolekcja" ma na celu umożliwienie użytkownikom przeglądania i z
 
 ### Instrukcje obsługi:
 1. Sklonuj repozytorium na swój komputer.
-2. Zainstaluj wymagane pakiety za pomocą komendy `npm install`.
+2. Zainstaluj wymagane pakiety za pomocą komendy `npm init -y`,`npm install express body-parser ejs`.
 3. Uruchom serwer za pomocą komendy `node server.js`.
 4. Otwórz przeglądarkę i przejdź pod adres `http://localhost:3000`.
 
