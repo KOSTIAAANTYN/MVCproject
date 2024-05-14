@@ -26,6 +26,17 @@ module.exports = function(movies) {
         movies.splice(index, 1);
       }
       res.redirect('/');
+    },
+    editMovieForm: function(req, res) {
+      const index = req.params.index;
+      const movie = movies[index];
+      res.render('edit', { index, movie });
+    },
+    editMovie: function(req, res) {
+      const index = req.params.index;
+      const { title, director, rating, review } = req.body;
+      movies[index] = { title, director, rating, review };
+      res.redirect('/');
     }
   };
 };
