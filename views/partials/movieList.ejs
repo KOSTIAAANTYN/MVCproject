@@ -1,0 +1,32 @@
+<h2>Movie Collection:</h2>
+<ul>
+  <% movies.forEach(function(movie, index) { %>
+    <li>
+      <%= movie.title %> - <%= movie.director %> (Rating: <%= movie.rating %>)
+      <form action="/edit/<%= index %>" method="GET" style="display: inline;">
+        <button type="submit" class="edit">Edit</button>
+      </form>
+      <form action="/delete/<%= index %>" method="POST" style="display: inline;">
+        <button type="submit" class="delete">Delete</button>
+      </form>
+      <% if (movie.watched) { %>
+        <span class="watched" onclick="document.getElementById('unwatch-form-<%= index %>').submit();">(Watched)</span>
+        <form id="unwatch-form-<%= index %>" action="/unwatched/<%= index %>" method="POST" style="display: none;"></form>
+      <% } else { %>
+        <form action="/watched/<%= index %>" method="POST" style="display: inline;">
+          <button type="submit">Mark as Watched</button>
+        </form>
+      <% } %>
+      <br>
+      <% if (movie.review) { %>
+        <p><strong>Review:</strong> <%= movie.review %></p>
+      <% } else { %>
+        <form action="/review/<%= index %>" method="POST">
+          <label for="review">Review:</label><br>
+          <textarea id="review" name="review" rows="4" cols="50"></textarea><br>
+          <button type="submit">Add Review</button>
+        </form>
+      <% } %>
+    </li>
+  <% }); %>
+</ul>

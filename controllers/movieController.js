@@ -1,3 +1,5 @@
+const Movie = require('../models/movieModel');
+
 module.exports = function(movies) {
   return {
     getMovies: function(req, res) {
@@ -5,19 +7,24 @@ module.exports = function(movies) {
     },
     addMovie: function(req, res) {
       const { title, director, rating } = req.body;
-      const newMovie = { title, director, rating, watched: false, review: '' };
+      const newMovie = new Movie(title, director, rating);
       movies.push(newMovie);
       res.redirect('/');
     },
     markAsWatched: function(req, res) {
       const movieIndex = req.params.id;
-      movies[movieIndex].watched = true;
+      movies[movieIndex].markAsWatched();
+      res.redirect('/');
+    },
+    markAsUnwatched: function(req, res) {
+      const movieIndex = req.params.id;
+      movies[movieIndex].markAsUnwatched();
       res.redirect('/');
     },
     addReview: function(req, res) {
       const movieIndex = req.params.id;
       const review = req.body.review;
-      movies[movieIndex].review = review;
+      movies[movieIndex].addReview(review);
       res.redirect('/');
     },
     deleteMovie: function(req, res) {
@@ -35,10 +42,8 @@ module.exports = function(movies) {
     editMovie: function(req, res) {
       const index = req.params.index;
       const { title, director, rating, review } = req.body;
-      movies[index] = { title, director, rating, review };
+      movies[index].update(title, director, rating, review);
       res.redirect('/');
     }
   };
 };
-
-
